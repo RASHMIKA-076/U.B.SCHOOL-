@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>U.B.NATIONAL COLLEGE</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      height: 100%;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqh8-Mrpm-ejXkrJIJ528rIjlBx09X98bCIiIoSt-6GGaUdSwZ07QPQf-Q1tE5tNbRHTIOxNPlOeqOD-ezXR9nMGx0MxE3MVTrA-tD3pF75ZRdZV76UVVt0nrpzWQb5MCS-472e=s1408-w720-h1408-rw');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+
+    .language-selector button {
+      margin: 3px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #00BFFF;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .language-selector button:hover {
+      background-color: #0080c0;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
+      padding: 60px 20px 50px 20px;
+      text-align: center;
+      border-bottom: 3px solid #00BFFF;
+    }
+
+    .header h1 {
+      font-size: 52px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    .header p {
+      font-size: 20px;
+      color: #e0f0ff;
+      margin-top: 15px;
+    }
+
+    /* Menu Buttons */
+    .menu {
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .menu button {
+      background-color: #fff;
+      color: #0056b3;
+      border: none;
+      padding: 12px 25px;
+      margin: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu button:hover {
+      background-color: #0056b3;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    #newsBtn {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    /* Dropdowns */
+    .ol-menu,
+    .paper-menu,
+    .shortnote-menu,
+    .al-menu {
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .ol-menu button,
+    .shortnote-menu button,
+    .al-menu button,
+    .paper-menu button {
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      padding: 10px 22px;
+      transition: 0.3s;
+    }
+
+    .ol-menu button,
+    .shortnote-menu button,
+    .al-menu button {
+      background-color: #1E90FF;
+      color: white;
+    }
+
+    .ol-menu button:hover,
+    .shortnote-menu button:hover,
+    .al-menu button:hover {
+      background-color: #0b63c7;
+    }
+
+    .paper-menu {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 15px 0;
+      margin: auto;
+      width: 80%;
+    }
+
+    .paper-menu button {
+      background-color: #FFA500;
+      color: white;
+    }
+
+    .paper-menu button:hover {
+      background-color: #cc8400;
+    }
+
+    /* Content */
+    .content {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 28px;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    /* Vision, Mission & History */
+    .vision-mission {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin: 50px 10px;
+    }
+
+    .section-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border: 2px solid #00BFFF;
+      border-radius: 12px;
+      padding: 30px 20px;
+      max-width: 400px;
+      text-align: center;
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .section-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .section-box h2 {
+      font-size: 24px;
+      color: #00BFFF;
+      margin-bottom: 15px;
+    }
+
+    .section-box p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    /* News List */
+    .news-list {
+      display: none;
+      margin: 30px auto;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .news-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .news-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <button onclick="setLanguage('si')">සිංහල</button>
+    <button onclick="setLanguage('ta')">தமிழ்</button>
+    <button onclick="setLanguage('en')">English</button>
+  </div>
+
+  <div class="header">
+    <h1>U.B.NATIONAL COLLEGE</h1>
+    <p id="headerText">Official OL/AL portal – Papers & Short Notes!</p>
+    <div class="menu">
+      <button onclick="showHomeAnimation()" id="homeBtn">HOME +</button>
+      <button onclick="toggleOLMenu()" id="olBtn">OL SECTION ▼</button>
+      <button onclick="toggleALMenu()" id="alBtn">AL SECTION ▼</button>
+      <button onclick="showNews()" id="newsBtn">NEWS</button>
+    </div>
+  </div>
+
+  <div class="vision-mission">
+    <div class="section-box" id="visionBox">
+      <h2>Our Vision</h2>
+      <p>To cultivate excellent students through quality education</p>
+    </div>
+    <div class="section-box" id="missionBox">
+      <h2>Our Mission</h2>
+      <p>Our mission is to nurture students as good citizens for the betterment of the world.</p>
+    </div>
+    <div class="section-box" id="historyBox">
+      <h2>History of the School</h2>
+      <p>U.B. National College was founded in [Year]. Over the decades, it has grown to become a center of excellence in education, producing many successful students.</p>
+    </div>
+  </div>
+
+  <!-- Menus -->
+  <div class="ol-menu" id="olMenu">
+    <button onclick="togglePaper()" id="paperBtn">PAPER ▼</button>
+    <button onclick="toggleShortNote()" id="shortNoteBtn">SHORT NOTE ▼</button>
+  </div>
+
+  <div class="paper-menu" id="paperMenu">
+    <button class="paper-btn" data-si="පළමු වාරය" data-ta="முதல் பருவம்" data-en="First Term" onclick="goLink(this)">First Term</button>
+    <button class="paper-btn" data-si="දෙවන වාරය" data-ta="இரண்டாம் பருவம்" data-en="Second Term" onclick="goLink(this)">Second Term</button>
+    <button class="paper-btn" data-si="තෙවන වාරය" data-ta="மூன்றாம் பருவம்" data-en="Third Term" onclick="goLink(this)">Third Term</button>
+    <button class="paper-btn" data-si="පාසල් පේපර්" data-ta="பள்ளி பருவம்" data-en="School Paper" onclick="goLink(this)">School Paper</button>
+    <button class="paper-btn" data-si="වාර පරීක්ෂණ පේපර්" data-ta="அறிக்கை பரீட்சை" data-en="Test Paper" onclick="goLink(this)">Test Paper</button>
+  </div>
+
+  <div class="shortnote-menu" id="shortNoteMenu">
+    <button class="short-btn" data-si="ගණිතය" data-ta="கணிதம்" data-en="Mathematics" onclick="goLink(this)">Mathematics</button>
+    <button class="short-btn" data-si="ඉතිහාසය" data-ta="வரலாறு" data-en="History" onclick="goLink(this)">History</button>
+    <button class="short-btn" data-si="ආගම" data-ta="மதம்" data-en="Religion" onclick="goLink(this)">Religion</button>
+    <button class="short-btn" data-si="සිංහල" data-ta="சிங்களம்" data-en="Sinhala" onclick="goLink(this)">Sinhala</button>
+    <button class="short-btn" data-si="විද්‍යාව" data-ta="அறிவு" data-en="Science" onclick="goLink(this)">Science</button>
+    <button class="short-btn" data-si="ඉංග්‍රීසි" data-ta="ஆங்கிலம்" data-en="English" onclick="goLink(this)">English</button>
+  </div>
+
+  <div class="al-menu" id="alMenu">
+    <button class="al-btn" data-si="ජීව විද්‍යාව" data-ta="உயிரியல்" data-en="Biology" onclick="goLink(this)">Biology</button>
+    <button class="al-btn" data-si="උසස් ගණිතය" data-ta="உயர்க் கணிதம்" data-en="Advanced Mathematics" onclick="goLink(this)">Advanced Math</button>
+    <button class="al-btn" data-si="වාණිජ" data-ta="வர்த்தகம்" data-en="Commerce" onclick="goLink(this)">Commerce</button>
+    <button class="al-btn" data-si="තාක්ශණ විශය ධාරා" data-ta="தொழில்நுட்பத் துறை" data-en="Tech Stream" onclick="goLink(this)">Tech Stream</button>
+  </div>
+
+  <div class="content" id="content">Explore Papers & Short Notes</div>
+  <div class="news-list" id="newsList"></div>
+  <p class="f">Made with ❤️ by <a href="#">U.B.NATIONAL COLLEGE</a></p>
+
+  <script>
+    let currentLang = 'en';
+    const visionMissionTexts = {
+      si: {
+        visionTitle: "දැක්ම",
+        visionText: "ප්‍රශස්ත අධ්‍යාපනයක් තුලින් විශිෂ්ට දරුවෙක මෙහෙවර",
+        missionTitle: "මෙහෙවර",
+        missionText: "විශ්වය විජයක්ග්‍රහනය උදෙසා වන්නිනායක දරුවෝ දේශියත්වයෙන් හෙබි යහපත් දරුවන් ලෙස දැයට දායාද කිරීම අපගේ මෙහෙවර වන්නේය."
+      },
+      ta: {
+        visionTitle: "காட்சியோடு நோக்கம்",
+        visionText: "சிறந்த கல்வி மூலம் சிறந்த மாணவர்கள் உருவாக்கும் பணி",
+        missionTitle: "பணி",
+        missionText: "உலகில் சிறந்த விழிப்புணர்வை உருவாக்குவதற்காக நல்ல மாணவர்கள் உருவாக்குவது எங்கள் பணி."
+      },
+      en: {
+        visionTitle: "Our Vision",
+        visionText: "To cultivate excellent students through quality education",
+        missionTitle: "Our Mission",
+        missionText: "Our mission is to nurture students as good citizens for the betterment of the world."
+      }
+    };
+    const menuTexts = {
+      si: {
+        home: "මුල් පිටුව +",
+        ol: "OL අංශය ▼",
+        al: "AL අංශය ▼",
+        paper: "පේපර් ▼",
+        shortnote: "සටහන් ▼",
+        news: "ප්‍රවෘත්ති"
+      },
+      ta: {
+        home: "முகப்பு +",
+        ol: "OL பிரிவு ▼",
+        al: "AL பிரிவு ▼",
+        paper: "காகிதங்கள் ▼",
+        shortnote: "குறிப்பு ▼",
+        news: "செய்திகள்"
+      },
+      en: {
+        home: "HOME +",
+        ol: "OL SECTION ▼",
+        al: "AL SECTION ▼",
+        paper: "PAPER ▼",
+        shortnote: "SHORT NOTE ▼",
+        news: "NEWS"
+      }
+    };
+    const newsItems = [{
+        si: "නවතම විභාග විස්තර දැන් ලබා ගත හැකිය",
+        ta: "புதிய பரீட்சை விவரங்கள் தற்போது கிடைக்கின்றன",
+        en: "Latest exam details are now available"
+      },
+      {
+        si: "නව පන්ති ආරම්භ වේ",
+        ta: "புதிய வகுப்புகள் துவங்குகின்றன",
+        en: "New classes have started"
+      },
+      {
+        si: "සංවර්ධන වැඩසටහන් සදහා අයදුම් කරන්න",
+        ta: "வளர்ச்சி திட்டங்களுக்கு விண்ணப்பிக்கவும்",
+        en: "Apply for development programs"
+      }
+    ];
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('homeBtn').innerText = menuTexts[lang].home;
+      document.getElementById('olBtn').innerText = menuTexts[lang].ol;
+      document.getElementById('alBtn').innerText = menuTexts[lang].al;
+      document.getElementById('paperBtn').innerText = menuTexts[lang].paper;
+      document.getElementById('shortNoteBtn').innerText = menuTexts[lang].shortnote;
+      document.getElementById('newsBtn').innerText = menuTexts[lang].news;
+      document.getElementById('headerText').innerText = (lang === 'si') ? "නිල OL/AL පෝර්ටල් – පේපර් සහ සටහන්!" : (lang === 'ta') ? "அதிகாரப்பூர்வ OL/AL போர்டல் – காகிதங்கள் மற்றும் குறிப்பு நோட்டுகள்!" : "Official OL/AL portal – Papers & Short Notes!";
+      document.getElementById('content').innerText = (lang === 'si') ? "පේපර් සහ සටහන් පරීක්ෂා කරන්න" : (lang === 'ta') ? "காகிதங்கள் மற்றும் குறிப்பு நோட்டுகள் பார்வையிடவும்" : "Explore Papers & Short Notes";
+      document.getElementById('visionBox').querySelector('h2').innerText = visionMissionTexts[lang].visionTitle;
+      document.getElementById('visionBox').querySelector('p').innerText = visionMissionTexts[lang].visionText;
+      document.getElementById('missionBox').querySelector('h2').innerText = visionMissionTexts[lang].missionTitle;
+      document.getElementById('missionBox').querySelector('p').innerText = visionMissionTexts[lang].missionText;
+      // Buttons update
+      document.querySelectorAll('.paper-btn').forEach(b => b.innerText = b.getAttribute('data-' + lang));
+      document.querySelectorAll('.short-btn').forEach(b => b.innerText = b.getAttribute('data-' + lang));
+      document.querySelectorAll('.al-btn').forEach(b => b.innerText = b.getAttribute('data-' + lang));
+      // Update news if visible
+      if (document.getElementById('newsList').style.display === 'block') {
+        showNews();
+      }
+    }
+
+    function toggleOLMenu() {
+      let m = document.getElementById('olMenu');
+      m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+      document.getElementById('alMenu').style.display = 'none';
+      document.getElementById('paperMenu').style.display = 'none';
+      document.getElementById('shortNoteMenu').style.display = 'none';
+    }
+
+    function toggleALMenu() {
+      let m = document.getElementById('alMenu');
+      m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+      document.getElementById('olMenu').style.display = 'none';
+      document.getElementById('paperMenu').style.display = 'none';
+      document.getElementById('shortNoteMenu').style.display = 'none';
+    }
+
+    function togglePaper() {
+      let m = document.getElementById('paperMenu');
+      m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+      document.getElementById('shortNoteMenu').style.display = 'none';
+    }
+
+    function toggleShortNote() {
+      let m = document.getElementById('shortNoteMenu');
+      m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+      document.getElementById('paperMenu').style.display = 'none';
+    }
+
+    function goLink(btn) {
+      window.open("https://chat.whatsapp.com/HEqV7BwU8ltFmORgly6Wfs", "_blank");
+      document.getElementById('content').innerText = btn.innerText + " opened!";
+    }
+
+    function showHomeAnimation() {
+      document.getElementById('content').innerText = (currentLang === 'si') ? "U.B.NATIONAL COLLEGE වෙත සාදරයෙන් පිළිගනිමු!" : (currentLang === 'ta') ? "U.B.NATIONAL COLLEGEக்கு வரவேற்கிறோம்!" : "Welcome to U.B.NATIONAL COLLEGE!";
+      document.getElementById('olMenu').style.display = 'none';
+      document.getElementById('alMenu').style.display = 'none';
+      document.getElementById('paperMenu').style.display = 'none';
+      document.getElementById('shortNoteMenu').style.display = 'none';
+      document.getElementById('newsList').style.display = 'none';
+    }
+
+    function showNews() {
+      document.getElementById('content').innerText = (currentLang === 'si') ? "මෙන්න නවතම ප්‍රවෘත්ති" : (currentLang === 'ta') ? "இங்கே புதிய செய்திகள்" : "Latest News";
+      document.getElementById('newsList').innerHTML = "";
+      newsItems.forEach(n => {
+        let div = document.createElement('div');
+        div.className = 'news-item';
+        div.innerText = n[currentLang];
+        document.getElementById('newsList').appendChild(div);
+      });
+      document.getElementById('newsList').style.display = 'block';
+      document.getElementById('olMenu').style.display = 'none';
+      document.getElementById('alMenu').style.display = 'none';
+      document.getElementById('paperMenu').style.display = 'none';
+      document.getElementById('shortNoteMenu').style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>

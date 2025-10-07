@@ -1,2 +1,7 @@
-# U.B.SCHOOL-
-SCHOOL PLAT 
+# UBindex.html
+
+A Pen created on CodePen.
+
+Original URL: [https://codepen.io/Rashmika-shrimal-the-typescripter/pen/QwypqZb](https://codepen.io/Rashmika-shrimal-the-typescripter/pen/QwypqZb).
+
+web
